@@ -17,28 +17,30 @@
 <body>
     <main>
         <header>
-            <h6 id='day'></h6>
+            <h5>Ming's</h5>
+            
+            <div id='day'></div>
             <div id='date'></div>
             <div id='year'></div>
         </header>
         <div class='box1'>
             <form>
-                <div class='horCenter'>
-                    <div id='inputDomain'>
-                        <input type="text" id="newInput" placeholder="Add a to do" />
-                        <span>
-                            <button type='submit' id="submitButton">
-                                <img src='plus-square-regular.svg' id='addIcon' />
-                            </button>
-                        </span>
-                    </div>
-                    <br>
-                    <br>
+                <div id='displayList'>
                 </div>
             </form>
             <form>
-                <div id='displayList'>
-                </div>
+                    <div class='horCenter'>
+                        <div id='inputDomain'>
+                            <span>
+                                <button type='submit' id="submitButton">
+                                    <img src='plus-square-regular.svg' id='addIcon' />
+                                </button>
+                            </span>
+                            <input type="text" id="newInput" placeholder="Add a to do" />
+                        </div>
+                        <br>
+                        <br>
+                    </div>
             </form>
         </div>
     </main>

@@ -1,11 +1,11 @@
 const path = require('path');
-const ToDoDB = require("../data/list.js");
-
+//const ToDoDB = require("../data/list.js");
+let db = require("../models");
 
 
 module.exports = function (app) {
     app.get('/api/list', function (req, res) {
-        ToDoDB.find({}).then(
+        db.Todo.findAll({}).then(               //if use find  command here, it'll return the first one only?
             function (dbToDo) {
                 res.json(dbToDo);
             }
@@ -17,7 +17,10 @@ module.exports = function (app) {
     });
 
     app.post('/api/list', function (req, res) {
-        ToDoDB.create(req.body).then(
+        db.Todo.create({
+            newInput: req.body.newInput,
+            inputBox: req.body.inputBox
+        }).then(
             function (dbToDo) {
                 res.json(dbToDo);
             }
@@ -30,12 +33,21 @@ module.exports = function (app) {
     });
 
     app.put('/api/list', function (req, res) {
-        ToDoDB.findOne(req.body)
+        db.Todo.findOne(
+            {
+                where:{
+                    newInput: req.body.newInput
+                }
+            })
             .then(
                 function (data) {
                     const status = data.inputBox;
                     if (status){
-                        ToDoDB.deleteOne(req.body).then(
+                        db.Todo.destroy({
+                            where:{
+                                newInput: req.body.newInput
+                            }
+                        }).then(
                             function () {
                                 res.json({success: true});
                             }
@@ -45,7 +57,13 @@ module.exports = function (app) {
                             }
                         )
                     }else{
-                    ToDoDB.updateOne(req.body, { inputBox: !status })
+                    db.Todo.update({ 
+                        inputBox: !status 
+                        },{
+                            where:{
+                                newInput: req.body.newInput
+                            }
+                        })
                         .then(
                             function (data) {
                                 res.json(data);

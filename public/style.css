@@ -24,12 +24,12 @@ main{
     grid-column: span 1;
     grid-template-rows: 50px 1fr;
     grid-template-columns: 1fr;
-    width: 50vw;
-    margin-left: 25vw;
+    /*width: 50vw;*/
+    /*margin-left: 25vw;*/
     margin-top: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow:0px 2px 5px 5px #666666;
+    /*border-radius: 5px;
+    box-shadow:0px 2px 5px 5px #666666;*/
 }
 
 header {
@@ -43,7 +43,7 @@ header {
     font-size: 18px;
     margin-left: 7.5vw;
     height: 40px;
-    grid-template-columns: 45% 1fr;
+    grid-template-columns: 50% 30% 1fr;
     grid-template-rows: 1fr 1fr;
 }
 h6 {
@@ -67,7 +67,7 @@ h6 {
     grid-column: span 1;
     grid-row: span 1;
     padding: 10px;
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 1fr 80px;
 }
 
 footer{
@@ -105,7 +105,7 @@ footer{
     padding: 5px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 85% 15%; 
+    grid-template-columns: 15% 85%; 
 }
 .entryText{
     font-size: 18px;
