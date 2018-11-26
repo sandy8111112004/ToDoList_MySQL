@@ -1,11 +1,10 @@
 const path = require('path');
-//const ToDoDB = require("../data/list.js");
 let db = require("../models");
 
 
 module.exports = function (app) {
     app.get('/api/list', function (req, res) {
-        db.Todo.findAll({}).then(               //if use find  command here, it'll return the first one only?
+        db.Todo.findAll({}).then(               
             function (dbToDo) {
                 res.json(dbToDo);
             }

@@ -1,5 +1,4 @@
 const socket = io();
-// const moment = require('moment');
 //////////////////display function
 const render = function () {
     runListQuery();
@@ -39,15 +38,11 @@ render();
 ///////////////////////////submit function
 const submitFunc = function (e) {
     e.preventDefault();
-    console.log('get in submit');
     let parInput = $(this).parents('#inputDomain');
-    console.log(parInput.find('input').val());
     const newEntry = {
-        // newInput: $('#newInput').val().trim(),
         newInput: parInput.find('input').val().trim(),
         inputBox: false
     };
-    console.log(newEntry);
     for (let key in newEntry) {
         if (newEntry[key] === '') {
             alert('Please enter the task');
@@ -58,8 +53,6 @@ const submitFunc = function (e) {
     $.ajax({ url: '/api/list', method: 'POST', data: newEntry }).then(
         function (data) {
             if (data) {
-                console.log('input data in post method ajax', data);
-                // alert('You just added a new entry!');
                 parInput.find('input').val('');
             } else {
                 alert("There's a problem with your submision");
@@ -67,14 +60,11 @@ const submitFunc = function (e) {
 
         }
     );
-    console.log('before new-task emit',newEntry);
     socket.emit('new-task',newEntry);
 };
 console.log('in app.js');
 
 socket.on('emit-task',function(data){
-        console.log('emit-task',data);
-        //render task here
         const output = $('#displayList');
         const temp = $(`<div class='entry'>`);
         const tempSpan = $("<span class='entryText'>").text(`${data.newInput}`);
@@ -101,7 +91,6 @@ $(document).on('click', '#submitButton', submitFunc);
 
 const putFunc = function (e) {
     e.preventDefault();
-    console.log('get in putFunc');
     let parent = $(this).parent();
     const selEntry = {
         newInput: parent.text()
@@ -122,8 +111,6 @@ const putFunc = function (e) {
 };
 
 socket.on('emit-updateTask',function(data){
-    console.log('emit-updateTask',data);
-
     location.reload();
 })
 
