@@ -36,26 +36,15 @@ const runListQuery = function () {
 render();
 
 
-const renderDate = function(){
-    const day = moment().format('ddd');
-    const date =moment().format('MMM D');
-    const year = moment().format('YYYY');
-    $('#day').text(`${day}`);
-    $('#date').text(`${date}`);
-    $('#year').text(`${year}`);
-    console.log(day,date,year);
-
-}
-
-
-renderDate();
-
 ///////////////////////////submit function
 const submitFunc = function (e) {
     e.preventDefault();
     console.log('get in submit');
+    let parInput = $(this).parents('#inputDomain');
+    console.log(parInput.find('input').val());
     const newEntry = {
-        newInput: $('#newInput').val().trim(),
+        // newInput: $('#newInput').val().trim(),
+        newInput: parInput.find('input').val().trim(),
         inputBox: false
     };
     console.log(newEntry);
@@ -71,7 +60,7 @@ const submitFunc = function (e) {
             if (data) {
                 console.log('input data in post method ajax', data);
                 // alert('You just added a new entry!');
-                $('#newInput').val('');
+                parInput.find('input').val('');
             } else {
                 alert("There's a problem with your submision");
             }
@@ -122,7 +111,6 @@ const putFunc = function (e) {
         function (data) {
             if (data) {
                 console.log('input data in put method ajax', data);
-                // alert('You just updated a new entry!');
             } else {
                 alert("There's a problem with your submision");
             }
@@ -135,30 +123,9 @@ const putFunc = function (e) {
 
 socket.on('emit-updateTask',function(data){
     console.log('emit-updateTask',data);
-    //update display here
-    // let checkBox = $(this.)
-    // $.ajax({ url: "/api/list", method: "GET" }).then(
-    //     function (e) {
-    //         updateList(e,data);
-    //     }
-    // );
 
-    // if(!data.inputBox){
-    //     $(this).parent().text('');
-    // }else{
-    //     $(this).parent().childNodes().checked=true;
-    // }
     location.reload();
 })
-
-const updateList=function(dataList,dataText){
-    const result = dataList.find(e=>{
-        e.newInput===dataText.newInput;
-    });
-    return result;
-    if(result.inputBox){
-    }
-}
 
 
 $(document).on('click', '.inputBox', putFunc);

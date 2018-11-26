@@ -17,18 +17,12 @@
 <body>
     <main>
         <header>
-            <h5>Ming's</h5>
-            
-            <div id='day'></div>
-            <div id='date'></div>
-            <div id='year'></div>
+            <h5 id='topTitle'>Ming's</h5>
+            <h6 id='botTitle'>TO DO LIST</h6>
         </header>
         <div class='box1'>
-            <form>
-                <div id='displayList'>
-                </div>
-            </form>
-            <form>
+            <div id='contentBox'>
+                <form class='mobile'>
                     <div class='horCenter'>
                         <div id='inputDomain'>
                             <span>
@@ -41,13 +35,28 @@
                         <br>
                         <br>
                     </div>
-            </form>
+                </form>
+                <form>
+                    <div id='displayList'>
+                    </div>
+                </form>
+                <form class='desktop'>
+                    <div class='horCenter'>
+                        <div id='inputDomain'>
+                            <span>
+                                <button type='submit' id="submitButton">
+                                    <img src='plus-square-regular.svg' id='addIcon' />
+                                </button>
+                            </span>
+                            <input type="text" id="newInput" placeholder="Add a to do" />
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
-    <footer>
-        <a href="/api/list" style="color: black">Api To-Do-List</a>
-
-    </footer>
     <script src="/js/app.js"></script>
 </body>
 
